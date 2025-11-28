@@ -2,14 +2,14 @@ import { useState } from 'react';
 import DashboardHome from './components/DashboardHome';
 import CustomerListView from './components/CustomerListView';
 import CustomerDetailDashboard from './components/CustomerDetailDashboard';
-import { type MockUser } from './data/mockData';
+import { type User } from './services/api';
 
 type ViewState = 'HOME' | 'LIST' | 'DETAIL';
 
 function App() {
   const [viewState, setViewState] = useState<ViewState>('HOME');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
-  const [selectedUser, setSelectedUser] = useState<MockUser | null>(null);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
   const goToHome = () => {
     setViewState('HOME');
@@ -22,7 +22,7 @@ function App() {
     setViewState('LIST');
   };
 
-  const goToDetail = (user: MockUser) => {
+  const goToDetail = (user: User) => {
     setSelectedUser(user);
     setViewState('DETAIL');
   };

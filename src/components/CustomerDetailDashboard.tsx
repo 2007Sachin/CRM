@@ -1,12 +1,12 @@
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { ArrowLeft, DollarSign, Activity, Clock, Mail, RefreshCw, CreditCard, ShieldCheck, Server, Zap, Lightbulb } from "lucide-react";
-import { type MockUser } from '../data/mockData';
+import { type User } from '../services/api';
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { cn } from "../lib/utils";
 
 interface CustomerDetailDashboardProps {
-    user: MockUser;
+    user: User;
     onBack: () => void;
 }
 
