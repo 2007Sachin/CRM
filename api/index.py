@@ -25,11 +25,11 @@ app.add_middleware(
 class CallRequest(BaseModel):
     user_id: str
 
-@app.get("/")
+@app.get("/api")
 def read_root():
     return {"message": "BolnaOS CRM API is running"}
 
-@app.get("/users")
+@app.get("/api/users")
 def get_users():
     """Fetch all users from Supabase"""
     try:
@@ -38,7 +38,7 @@ def get_users():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.post("/simulate-traffic")
+@app.post("/api/simulate-traffic")
 def simulate_traffic():
     # 1. Fetch all users
     response = supabase.table("users").select("*").execute()
@@ -106,13 +106,13 @@ def simulate_traffic():
 
 # --- Analytics Endpoints ---
 
-@app.get("/analytics/pulse")
+@app.get("/api/analytics/pulse")
 def get_analytics_pulse():
     # Fetch latest 50 calls for the heartbeat chart
     response = supabase.table("calls").select("created_at, latency_ms").order("created_at", desc=True).limit(50).execute()
     return response.data
 
-@app.get("/analytics/funnel")
+@app.get("/api/analytics/funnel")
 def get_analytics_funnel():
     # 1. Total Signups (Total Users)
     users_resp = supabase.table("users").select("id, plan, usage_count").execute()
@@ -132,7 +132,7 @@ def get_analytics_funnel():
         "paid": paid_users
     }
 
-@app.get("/analytics/sectors")
+@app.get("/api/analytics/sectors")
 def get_analytics_sectors():
     # Fetch users with revenue and industry
     users_resp = supabase.table("users").select("industry, revenue").execute()
@@ -146,7 +146,7 @@ def get_analytics_sectors():
         
     return sector_revenue
 
-@app.get("/users/risk")
+@app.get("/api/users/risk")
 def get_users_risk():
     # Fetch recent calls to calc averages (limit to last 2000 to prevent OOM)
     calls_resp = supabase.table("calls").select("user_id, margin_percent, latency_ms").order("created_at", desc=True).limit(2000).execute()
