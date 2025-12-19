@@ -100,9 +100,9 @@ const DashboardHome = ({ onCategorySelect }: DashboardHomeProps) => {
                         Real-time analytics and user segmentation for revenue optimization.
                     </p>
                 </div>
-                <div className="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                    <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                    <span className="text-sm font-medium text-emerald-400">Live Data</span>
+                <div className="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
+                    <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                    <span className="text-sm font-medium text-blue-400">Demo Mode</span>
                 </div>
             </header>
 
